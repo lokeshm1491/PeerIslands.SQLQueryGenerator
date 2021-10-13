@@ -10,5 +10,6 @@ namespace PeerIslands.SQLQueryGenerator.Domain.Models
         public string Operator { get; set; }
         public string FieldName { get; set; }
         public string FieldValue { get; set; }
+        public string Condition { get; set; }
     }
 }

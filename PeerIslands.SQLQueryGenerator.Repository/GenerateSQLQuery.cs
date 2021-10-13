@@ -14,14 +14,17 @@ namespace PeerIslands.SQLQueryGenerator.Repository
 
             query.Append(table.TableName + " Where ");
 
-            for (int i = 0; i < table.Columns.Count(); i++)
+            int columnCount = table.Columns.Count();
+            for (int i = 0; i < columnCount; i++)
             {
-                var queryFilter = table.Columns[i];
-                var operatorFactory = new OperatorFactory();
-                var operatorType = operatorFactory.selectOperatorRepository(queryFilter.Operator);
-                var generatedQuery = operatorType.GenerateFilterQuery(queryFilter);
-
+                var fitlerColumn = table.Columns[i];
+                var operatorRepo = new OperatorRepository();
+                var operatorType = operatorRepo.SelectOperatorRepository(fitlerColumn.Operator);
+                var generatedQuery = operatorType.GenerateFilterQuery(fitlerColumn);
                 query.Append(generatedQuery);
+
+                if (i < columnCount - 1 && fitlerColumn.Condition != null)
+                    query.Append(" " + fitlerColumn.Condition + " ");
             }
             return query.ToString();
         }

@@ -4,22 +4,26 @@
     {
       "Operator": "Equal",
       "FieldName": "column1",
-      "FieldValue": "value"
+      "FieldValue": "value",
+      "Condition": "AND"
+    },
+    {
+      "Operator": "IN",
+      "FieldName": "column2",
+      "FieldValue": "value1;value2;value3",
+      "Condition": "OR"
+    },
+    {
+      "Operator": "Between",
+      "FieldName": "column3",
+      "FieldValue": "value1;value2",
+      "Condition": "AND"
+    },
+    {
+      "Operator": "like",
+      "FieldName": "column4",
+      "FieldValue": "value",
+      "Condition": "AND"
     }
-    //{
-    //  "Operator": "IN",
-    //  "FieldName": "column2",
-    //  "FieldValue": "value1;value2;value3"
-    //},
-    //{
-    //  "Operator": "Between",
-    //  "FieldName": "column3",
-    //  "FieldValue": "value1;value2"
-    //},
-    //{
-    //  "Operator": "like",
-    //  "FieldName": "column4",
-    //  "FieldValue": "value"
-    //}
   ]
 }

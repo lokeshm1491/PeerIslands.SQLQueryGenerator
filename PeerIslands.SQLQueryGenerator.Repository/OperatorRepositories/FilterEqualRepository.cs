@@ -2,13 +2,13 @@
 using PeerIslands.SQLQueryGenerator.Domain.Models;
 using System;
 
-namespace PeerIslands.SQLQueryGenerator.Repository
+namespace PeerIslands.SQLQueryGenerator.Repository.OperatorRepositories
 {
     public class FilterEqualRepository : IFilterTable
     {
         public string GenerateFilterQuery(Column filterColumn)
         {
-            return $"{filterColumn.FieldName} = {filterColumn.FieldValue}";
+            return $"{filterColumn.FieldName} = '{filterColumn.FieldValue}'";
         }
     }
 }
