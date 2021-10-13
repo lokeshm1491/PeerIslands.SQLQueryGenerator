@@ -6,7 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\PeerIslands.SQLQueryGenerator.Domain\PeerIslands.SQLQueryGenerator.Domain.csproj" />
+    <ProjectReference Include="..\PeerIslands.SQLQueryGenerator.Repository\PeerIslands.SQLQueryGenerator.Repository.csproj" />
   </ItemGroup>
 
   <ItemGroup>

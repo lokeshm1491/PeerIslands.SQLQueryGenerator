@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PeerIslands.SQLQueryGenerator.Domain.Interfaces
 {
-    interface IFilterTable
+    public interface IFilterTable
     {
         string GenerateFilterQuery(Column filterColumn);
     }

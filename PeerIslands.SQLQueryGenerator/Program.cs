@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using PeerIslands.SQLQueryGenerator.Domain.Models;
+using PeerIslands.SQLQueryGenerator.Repository;
+using System;
 
 namespace PeerIslands.SQLQueryGenerator
 {
@@ -10,8 +13,12 @@ namespace PeerIslands.SQLQueryGenerator
             Console.WriteLine("=================================");
 
             string problemOneJson = FileReader.ReadFile(@"ProblemOne.json");
+            Table problemOneTable = JsonConvert.DeserializeObject<Table>(problemOneJson);
 
-            Console.WriteLine(problemOneJson);
+            GenerateSQLQuery generateSQL = new GenerateSQLQuery();
+            string problemOneQuery = generateSQL.GenerateQuery(problemOneTable);
+
+            Console.WriteLine(problemOneQuery);
 
             Console.WriteLine("=================================");
             Console.WriteLine("Program has ended, enter any key to close");

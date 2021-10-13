@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeerIslands.SQLQueryGenerat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeerIslands.SQLQueryGenerator.Domain", "PeerIslands.SQLQueryGenerator.Domain\PeerIslands.SQLQueryGenerator.Domain.csproj", "{2749F591-1808-4F65-AC52-697A87D632A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeerIslands.SQLQueryGenerator.Repository", "PeerIslands.SQLQueryGenerator.Repository\PeerIslands.SQLQueryGenerator.Repository.csproj", "{A85C77B4-1105-46C9-A09A-3877F0DFCD5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{2749F591-1808-4F65-AC52-697A87D632A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2749F591-1808-4F65-AC52-697A87D632A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2749F591-1808-4F65-AC52-697A87D632A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A85C77B4-1105-46C9-A09A-3877F0DFCD5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A85C77B4-1105-46C9-A09A-3877F0DFCD5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A85C77B4-1105-46C9-A09A-3877F0DFCD5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A85C77B4-1105-46C9-A09A-3877F0DFCD5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
