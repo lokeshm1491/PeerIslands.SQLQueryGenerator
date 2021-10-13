@@ -1,0 +1,25 @@
+{
+  "TableName": "Table1",
+  "Columns": [
+    {
+      "Operator": "Equal",
+      "FieldName": "column1",
+      "FieldValue": "value"
+    },
+    {
+      "Operator": "IN",
+      "FieldName": "column2",
+      "FieldValue": "value1;value2;value3"
+    },
+    {
+      "Operator": "Between",
+      "FieldName": "column3",
+      "FieldValue": "value1;value2"
+    },
+    {
+      "Operator": "like",
+      "FieldName": "column4",
+      "FieldValue": "value"
+    }
+  ]
+}

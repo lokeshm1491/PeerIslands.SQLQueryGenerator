@@ -6,7 +6,16 @@ namespace PeerIslands.SQLQueryGenerator
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Program has been started");
+            Console.WriteLine("=================================");
+
+            string problemOneJson = FileReader.ReadFile(@"ProblemOne.json");
+
+            Console.WriteLine(problemOneJson);
+
+            Console.WriteLine("=================================");
+            Console.WriteLine("Program has ended, enter any key to close");
+            Console.Read();
         }
     }
 }

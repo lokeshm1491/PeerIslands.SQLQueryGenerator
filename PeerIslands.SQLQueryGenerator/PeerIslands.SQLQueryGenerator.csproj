@@ -9,4 +9,10 @@
     <ProjectReference Include="..\PeerIslands.SQLQueryGenerator.Domain\PeerIslands.SQLQueryGenerator.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="ProblemOne.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
