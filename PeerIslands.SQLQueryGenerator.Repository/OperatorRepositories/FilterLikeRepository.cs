@@ -8,7 +8,7 @@ namespace PeerIslands.SQLQueryGenerator.Repository.OperatorRepositories
     {
         public string GenerateFilterQuery(Column filterColumn)
         {
-            return $"{filterColumn.FieldName} liek '%{filterColumn.FieldValue}%'";
+            return $"{filterColumn.FieldName} like '%{filterColumn.FieldValue}%'";
         }
     }
 }

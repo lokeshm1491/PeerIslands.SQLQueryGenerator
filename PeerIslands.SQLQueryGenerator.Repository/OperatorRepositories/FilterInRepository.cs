@@ -11,15 +11,14 @@ namespace PeerIslands.SQLQueryGenerator.Repository.OperatorRepositories
     {
         public string GenerateFilterQuery(Column filterColumn)
         {
-            var filterValues = GetFieldValue(filterColumn).FieldValue;
+            var filterValues = GetFieldValue(filterColumn);
             return $"{filterColumn.FieldName} IN ({filterValues})";
         }
 
-        private Column GetFieldValue(Column filterColumn)
+        private string GetFieldValue(Column filterColumn)
         {
             var values = filterColumn.FieldValue.Split(';').ToList();
-            filterColumn.FieldValue = "'" + string.Join("','", values) + "'";
-            return filterColumn;
+            return "'" + string.Join("','", values) + "'";
         }
     }
 }

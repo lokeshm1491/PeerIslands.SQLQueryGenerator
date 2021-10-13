@@ -1,0 +1,81 @@
+[
+  {
+    "TableName": "Table1",
+    "Columns": [
+      {
+        "Operator": "Equal",
+        "FieldName": "column1",
+        "FieldValue": "value",
+        "Condition": "AND"
+      },
+      {
+        "Operator": "IN",
+        "FieldName": "column2",
+        "FieldValue": "value1;value2;value3",
+        "Condition": "OR"
+      },
+      {
+        "Operator": "Between",
+        "FieldName": "column3",
+        "FieldValue": "value1;value2",
+        "Condition": "AND"
+      },
+      {
+        "Operator": "like",
+        "FieldName": "column4",
+        "FieldValue": "value",
+        "Condition": "AND"
+      }
+    ]
+  },
+  {
+    "TableName": "Table2",
+    "Columns": [
+      {
+        "Operator": "Equal",
+        "FieldName": "column1",
+        "FieldValue": "value",
+        "Condition": "AND"
+      },
+      {
+        "Operator": "IN",
+        "FieldName": "column2",
+        "FieldValue": "value1;value2;value3",
+        "Condition": "OR"
+      },
+      {
+        "Operator": "Between",
+        "FieldName": "column3",
+        "FieldValue": "value1;value2",
+        "Condition": "AND"
+      },
+      {
+        "Operator": "like",
+        "FieldName": "column4",
+        "FieldValue": "value",
+        "Condition": "AND"
+      }
+    ],
+    "JoinType": "LEFT JOIN",
+    "JoinConditions": [
+      {
+        "Operator": "Equal",
+        "FieldName": "Table1.column1",
+        "FieldValue": "Table2.column1",
+        "Condition": "AND"
+      },
+      {
+        "Operator": "Equal",
+        "FieldName": "Table1.column2",
+        "FieldValue": "Table2.column2",
+        "Condition": "OR"
+      },
+      {
+        "Operator": "Equal",
+        "FieldName": "Table1.column3",
+        "FieldValue": "Table2.column3",
+        "Condition": "AND"
+      }
+    ]
+  }
+]

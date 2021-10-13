@@ -9,5 +9,7 @@ namespace PeerIslands.SQLQueryGenerator.Domain.Models
     {
         public string TableName { get; set; }
         public List<Column> Columns { get; set; }
+        public string JoinType { get; set; }
+        public List<Column> JoinConditions { get; set; }
     }
 }
