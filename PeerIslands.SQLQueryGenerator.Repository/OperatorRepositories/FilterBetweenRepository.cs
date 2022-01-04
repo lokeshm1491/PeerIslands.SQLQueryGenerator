@@ -7,7 +7,7 @@ using System.Text;
 
 namespace PeerIslands.SQLQueryGenerator.Repository.OperatorRepositories
 {
-    public class FilterBetweenRepository : IFilterTable
+    public class FilterBetweenRepository : IFilterBetweenRepository
     {
         public string GenerateFilterQuery(Column filterColumn)
         {

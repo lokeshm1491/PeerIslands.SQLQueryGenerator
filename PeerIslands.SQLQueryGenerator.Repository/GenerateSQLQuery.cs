@@ -1,4 +1,5 @@
 ﻿using PeerIslands.SQLQueryGenerator.Domain.Models;
+using PeerIslands.SQLQueryGenerator.Repository.OperatorRepositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,8 +7,15 @@ using System.Text;
 
 namespace PeerIslands.SQLQueryGenerator.Repository
 {
-    public class GenerateSQLQuery
+    public class GenerateSQLQuery : IGenerateSQLQuery
     {
+        private readonly IOperatorRepository _operatorRepository;
+
+        public GenerateSQLQuery(IOperatorRepository operatorRepository)
+        {
+            _operatorRepository = operatorRepository;
+        }
+
         public string GenerateQuery(Table table, string selectedColumns)
         {
             StringBuilder query = new StringBuilder("select " + selectedColumns + " from ");
@@ -18,9 +26,7 @@ namespace PeerIslands.SQLQueryGenerator.Repository
             for (int i = 0; i < columnCount; i++)
             {
                 var fitlerColumn = table.Columns[i];
-                var operatorRepo = new OperatorRepository();
-                var operatorType = operatorRepo.SelectOperatorRepository(fitlerColumn.Operator);
-                var generatedQuery = operatorType.GenerateFilterQuery(fitlerColumn);
+                var generatedQuery = _operatorRepository.GenerateFilterQuery(fitlerColumn.Operator, fitlerColumn);
                 query.Append(generatedQuery);
 
                 if (i < columnCount - 1 && fitlerColumn.Condition != null)
@@ -54,9 +60,7 @@ namespace PeerIslands.SQLQueryGenerator.Repository
                     for (int j = 0; j < columnCount; j++)
                     {
                         var fitlerColumn = currenttable.JoinConditions[j];
-                        var operatorRepo = new OperatorRepository();
-                        var operatorType = operatorRepo.SelectOperatorRepository(fitlerColumn.Operator);
-                        var generatedQuery = operatorType.GenerateFilterQuery(fitlerColumn);
+                        var generatedQuery = _operatorRepository.GenerateFilterQuery(fitlerColumn.Operator, fitlerColumn);
                         query.Append(generatedQuery.Replace("'", ""));
 
                         if (j < columnCount - 1 && fitlerColumn.Condition != null)

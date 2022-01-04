@@ -4,7 +4,7 @@ using System;
 
 namespace PeerIslands.SQLQueryGenerator.Repository.OperatorRepositories
 {
-    public class FilterLikeRepository : IFilterTable
+    public class FilterLikeRepository : IFilterLikeRepository
     {
         public string GenerateFilterQuery(Column filterColumn)
         {

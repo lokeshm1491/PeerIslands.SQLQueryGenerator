@@ -1,44 +1,63 @@
 ﻿using PeerIslands.SQLQueryGenerator.Domain.Interfaces;
+using PeerIslands.SQLQueryGenerator.Domain.Models;
 using PeerIslands.SQLQueryGenerator.Repository.OperatorRepositories;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PeerIslands.SQLQueryGenerator.Repository
 {
-    public class OperatorRepository
+    public class OperatorRepository : IOperatorRepository
     {
-        public IFilterTable SelectOperatorRepository(string operatorType)
+        private readonly IFilterEqualRepository _filterEqual;
+        private readonly IFilterNotEqualRepository _filterNotEqual;
+        private readonly IFilterGreaterThanRepository _filterGreaterThan;
+        private readonly IFilterLessThanRepository _filterLessThan;
+        private readonly IFilterLikeRepository _filterLike;
+        private readonly IFilterInRepository _filterIn;
+        private readonly IFilterBetweenRepository _filterBetween;
+
+        public OperatorRepository(IFilterEqualRepository filterEqual, IFilterNotEqualRepository filterNotEqual,
+            IFilterGreaterThanRepository filterGreaterThan, IFilterLessThanRepository filterLessThan,
+            IFilterLikeRepository filterLike, IFilterInRepository filterIn, IFilterBetweenRepository filterBetween)
         {
-            IFilterTable filterTable;
+            _filterEqual = filterEqual;
+            _filterNotEqual = filterNotEqual;
+            _filterGreaterThan = filterGreaterThan;
+            _filterLessThan = filterLessThan;
+            _filterLike = filterLike;
+            _filterIn = filterIn;
+            _filterBetween = filterBetween;
+        }
+
+        public string GenerateFilterQuery(string operatorType, Column filterColumn)
+        {
+            string generatedQuery;
             switch (operatorType.ToLower())
             {
                 case "equal":
-                    filterTable = new FilterEqualRepository();
+                    generatedQuery = _filterEqual.GenerateFilterQuery(filterColumn);
                     break;
                 case "notequal":
-                    filterTable = new FilterNotEqualRepository();
+                    generatedQuery = _filterNotEqual.GenerateFilterQuery(filterColumn);
                     break;
                 case "greaterthan":
-                    filterTable = new FilterGreaterThanRepository();
+                    generatedQuery = _filterGreaterThan.GenerateFilterQuery(filterColumn);
                     break;
                 case "lessthan":
-                    filterTable = new FilterLessThanRepository();
+                    generatedQuery = _filterLessThan.GenerateFilterQuery(filterColumn);
                     break;
                 case "like":
-                    filterTable = new FilterLikeRepository();
+                    generatedQuery = _filterLike.GenerateFilterQuery(filterColumn);
                     break;
                 case "in":
-                    filterTable = new FilterInRepository();
+                    generatedQuery = _filterIn.GenerateFilterQuery(filterColumn);
                     break;
                 case "between":
-                    filterTable = new FilterBetweenRepository();
+                    generatedQuery = _filterBetween.GenerateFilterQuery(filterColumn);
                     break;
                 default:
-                    filterTable = null;
+                    generatedQuery = string.Empty;
                     break;
             }
-            return filterTable;
+            return generatedQuery;
         }
     }
 }

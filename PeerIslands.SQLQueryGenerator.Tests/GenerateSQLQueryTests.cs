@@ -1,5 +1,7 @@
-﻿using PeerIslands.SQLQueryGenerator.Domain.Models;
+﻿using Moq;
+using PeerIslands.SQLQueryGenerator.Domain.Models;
 using PeerIslands.SQLQueryGenerator.Repository;
+using PeerIslands.SQLQueryGenerator.Repository.OperatorRepositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +11,13 @@ namespace PeerIslands.SQLQueryGenerator.Tests
 {
     public class GenerateSQLQueryTests
     {
+        private readonly IGenerateSQLQuery _generateSQL;
+
+        public GenerateSQLQueryTests(IGenerateSQLQuery generateSQL)
+        {
+            _generateSQL = generateSQL;
+        }
+
         private Table CreateEqualTable()
         {
             List<Column> columns = new List<Column>();
@@ -137,8 +146,7 @@ namespace PeerIslands.SQLQueryGenerator.Tests
             var table = CreateEqualTable();
 
             //Act
-            var queryGenerator = new GenerateSQLQuery();
-            var result = queryGenerator.GenerateQuery(table, "*");
+            var result = _generateSQL.GenerateQuery(table, "*");
 
             //Assert
             Assert.Equal("select * from Table1 Where Column1 = 'value1'", result, ignoreCase: true);
@@ -151,8 +159,7 @@ namespace PeerIslands.SQLQueryGenerator.Tests
             var table = CreateMultiTable();
 
             //Act
-            var queryGenerator = new GenerateSQLQuery();
-            var result = queryGenerator.GenerateQuery(table, "*");
+            var result = _generateSQL.GenerateQuery(table, "*");
 
             //Assert
             Assert.Equal("select * from Table1 Where Column1 = 'value1' AND Column2 IN ('value1','value2')", result, ignoreCase: true);
@@ -166,8 +173,7 @@ namespace PeerIslands.SQLQueryGenerator.Tests
             var tables = CreateJoinTable();
 
             //Act
-            var queryGenerator = new GenerateSQLQuery();
-            var result = queryGenerator.GenerateJoinQuery(tables, "*");
+            var result = _generateSQL.GenerateJoinQuery(tables, "*");
 
             //Assert
             Assert.Equal("select * from (select * from Table1 Where column1 = 'value' AND column2 IN ('value1','value2','value3') OR column3 BETWEEN 'value1' AND 'value2' AND column4 like '%value%' ) Table1 LEFT JOIN  (select * from Table2 Where column1 = 'value' AND column2 IN ('value1','value2','value3') OR column3 BETWEEN 'value1' AND 'value2' AND column4 like '%value%' ) Table2  ON Table1.column1 = Table2.column1 AND Table1.column2 = Table2.column2 OR Table1.column3 = Table2.column3", result, ignoreCase: true);
