@@ -37,8 +37,5 @@ You are allowed to use whatever libraries/parsers you can find provided you can 
 
 ## How to complete this challenge:
 Fork this repo in github . Include the test code and data in your solution. 
- Add instructions to run your code 
-
-### _Pull request to this repo will be ignored_ 
-
+ Add instructions to run your code
  
